@@ -43,7 +43,9 @@ $onetime="1";
 $zero="0";
 $arr1 =explode('분' , $time1);
 $arr2 =explode('분' , $time2);
-
+$time_mon=date("H");
+$time_min=date("i");
+$now_time=$time_mon.$time_min;
 $time =date("H시i분");
 $str1=strcmp($arr1[0],$arrive);
 $str2=strcmp($arr1[0],$onetime);
@@ -59,8 +61,7 @@ if($st2==13){$stat_cut2= substr($stat2[1],0,2);}
 if($st2==12){$stat_cut2= substr($stat2[1],0,1);}
 
 
-$find1=substr($stat_cut1,0,1);
-$find2=substr($stat_cut2,0,1);
+
 $stat_res1=$stat_cut1."정류장 전" ;
 $stat_res2=$stat_cut2."정류장 전" ;
 $str3=strcmp($stat_cut1,$zero);
@@ -83,10 +84,15 @@ foreach($small as $value){
 	if($size2==$value){$res_size2="작은 버스";}
 }
 if($res_size1==NULL||$res_size2==NULL){
+if($firstime<$now_time){
+$res_size1="운행준비중";
+$res1="첫차는 " .$fir_min." 시 ".$fir_sec."분 입니다.";
+}
+else{
 $res_size1="운행준비중";
 $res_size2="운행준비중";
 $res1="첫차는 " .$fir_min." 시 ".$fir_sec."분 입니다.";
-$res2="첫차는 " .$fir_min." 시 ".$fir_sec."분 입니다.";
+$res2="첫차는 " .$fir_min." 시 ".$fir_sec."분 입니다.";}
 }
 
 
